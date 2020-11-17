@@ -1,7 +1,7 @@
 # Проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Николай Головин](https://up.htmlacademy.ru/ecmascript/13/user/526999).
-* Наставник: 
+* Наставник: [Максим Волков](https://htmlacademy.ru/profile/id1508839).
 
 ---
 
