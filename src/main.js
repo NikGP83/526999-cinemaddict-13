@@ -1,5 +1,5 @@
 import {createUserRankTemplate} from './view/user-rank.js';
-import {mainNavigationMenu} from './view/main-navigation-menu.js';
+import {createMainNavigationMenu} from './view/main-navigation-menu.js';
 import {createFIlterList} from './view/filter-list.js';
 import {createItemBoard} from './view/item-board.js';
 import {createFilmCard} from './view/film-card.js';
@@ -18,7 +18,7 @@ const siteHeader = document.querySelector(`.header`);
 render(siteHeader, createUserRankTemplate(), `beforeend`);
 
 const siteMainElement = document.querySelector(`.main`);
-render(siteMainElement, mainNavigationMenu(), `afterbegin`);
+render(siteMainElement, createMainNavigationMenu(), `afterbegin`);
 render(siteMainElement, createFIlterList(), `beforeend`);
 render(siteMainElement, createItemBoard(), `beforeend`);
 
