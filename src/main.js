@@ -5,6 +5,8 @@ import {createItemBoard} from './view/item-board.js';
 import {createFilmCard} from './view/film-card.js';
 import {createShowMoreBtn} from './view/show-more-btn.js';
 import {createExtraFilmBoard} from './view/film-list-extra';
+import {createExtraFilmBoardCommented} from './view/film-list-commented';
+import {createFooterFilmStatistics} from './view/footer-statistics';
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -20,7 +22,8 @@ render(siteMainElement, mainNavigationMenu(), `afterbegin`);
 render(siteMainElement, createFIlterList(), `beforeend`);
 render(siteMainElement, createItemBoard(), `beforeend`);
 
-const filmsListContainer = siteMainElement.querySelector(`.films-list__container`);
+const filmMainSection = siteMainElement.querySelector(`.films`);
+const filmsListContainer = filmMainSection.querySelector(`.films-list__container`);
 const MAX_FULL_FILM_CARDS = 5;
 
 
@@ -29,9 +32,18 @@ for (let i = 0; i <= MAX_FULL_FILM_CARDS - 1; i++) {
 }
 
 render(filmsListContainer, createShowMoreBtn(), `afterend`);
+render(filmMainSection, createExtraFilmBoard(), `beforeend`);
+render(filmMainSection, createExtraFilmBoardCommented(), `beforeend`);
 
-const extraFilmContainer = siteMainElement.querySelector(`.films-list--extra`);
 const MAX_SPECIAL_FILM_CARDS = 2;
+const extraFilmList = siteMainElement.querySelector(`.films-list--extra .films-list__container`);
+const extraFilmListCommented = siteMainElement.querySelector(`.films-list--extra:last-child .films-list__container`);
 
-render(siteMainElement, createExtraFilmBoard(), `beforeend`);
+for (let i = 0; i < MAX_SPECIAL_FILM_CARDS; i++) {
+  render(extraFilmList, createFilmCard(), `beforeend`);
+  render(extraFilmListCommented, createFilmCard(), `beforeend`);
+}
 
+const footerStatisticsContainer = document.querySelector(`.footer .footer__statistics`);
+
+render(footerStatisticsContainer, createFooterFilmStatistics(), `beforeend`);
