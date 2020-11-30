@@ -11,13 +11,17 @@ const descriptionList = [`Lorem ipsum dolor sit amet, consectetur adipiscing eli
 ];
 
 const authorName = [`Вася`, `Aня`, `Толя`, `Коля`, `Пуфик`];
-
 let commentsArray = [`Неплохо`, `Плохо`, `Могло быть и лучше`, `Что за халтура`, `Это божественно`];
+
+const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
+const getComments = () => commentsArray[getRandom(0, commentsArray.length - 1)];
+const getFilmDescription = () => descriptionList[getRandom(0, 5)];
+
 export const generatefilmCard = () => {
   return {
-    name: genetateFilmName(),
-    poster: generatePoster(),
-    descriprion: genetateDescription()
+    name: getRandom(),
+    poster: getPoster(),
+    descriprion: getFilmDescription()
   };
 };
 
@@ -25,6 +29,6 @@ export const generateComments = () => {
   return {
     name: getAuthorName(),
     data: getDate(),
-
+    comments: getComments()
   };
 };
