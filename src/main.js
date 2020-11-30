@@ -8,6 +8,7 @@ import {createExtraFilmBoard} from './view/film-list-extra';
 import {createExtraFilmBoardCommented} from './view/film-list-commented';
 import {createFooterFilmStatistics} from './view/footer-statistics';
 
+
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
@@ -47,3 +48,5 @@ for (let i = 0; i < MAX_SPECIAL_FILM_CARDS; i++) {
 const footerStatisticsContainer = document.querySelector(`.footer .footer__statistics`);
 
 render(footerStatisticsContainer, createFooterFilmStatistics(), `beforeend`);
+
+
