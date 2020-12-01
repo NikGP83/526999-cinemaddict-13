@@ -7,8 +7,12 @@ import {createShowMoreBtn} from './view/show-more-btn.js';
 import {createExtraFilmBoard} from './view/film-list-extra';
 import {createExtraFilmBoardCommented} from './view/film-list-commented';
 import {createFooterFilmStatistics} from './view/footer-statistics';
+import {generatefilmCard} from './mock/data-template.js';
 
+const FILM_PROFILE_NUM = 5;
 
+const filmProfile = new Array(FILM_PROFILE_NUM).fill().map(generatefilmCard);
+console.log(filmProfile);
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
@@ -42,7 +46,7 @@ const extraFilmListCommented = siteMainElement.querySelector(`.films-list--extra
 
 for (let i = 0; i < MAX_SPECIAL_FILM_CARDS; i++) {
   render(extraFilmList, createFilmCard(), `beforeend`);
-  render(extraFilmListCommented, createFilmCard(), `beforeend`);
+  render(extraFilmListCommented, createFilmCard(filmProfile[i]), `beforeend`);
 }
 
 const footerStatisticsContainer = document.querySelector(`.footer .footer__statistics`);
