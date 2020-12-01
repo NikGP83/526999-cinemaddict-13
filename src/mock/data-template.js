@@ -18,7 +18,7 @@ const postersArr = [`made-for-each-other.png`, `popeye-meets-sinbad.png`, `sageb
 const filmName = [`Фильм один`, `Фильм два`, `Фильм три`];
 
 const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
-const getComments = () => commentsArray[getRandom(0, commentsArray.length - 1)];
+const getComments = () => commentsArray[getRandom(0, 5)];
 const getFilmDescription = () => descriptionList[getRandom(0, 5)];
 const getPoster = () => postersArr[getRandom(0, postersArr.length - 1)];
 const getFilmName = () => filmName[getRandom(0, filmName.length - 1)];
