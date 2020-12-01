@@ -11,16 +11,22 @@ const descriptionList = [`Lorem ipsum dolor sit amet, consectetur adipiscing eli
 ];
 
 const authorName = [`Вася`, `Aня`, `Толя`, `Коля`, `Пуфик`];
-let commentsArray = [`Неплохо`, `Плохо`, `Могло быть и лучше`, `Что за халтура`, `Это божественно`];
+const commentsArray = [`Неплохо`, `Плохо`, `Могло быть и лучше`, `Что за халтура`, `Это божественно`];
+const postersArr = [`made-for-each-other.png`, `popeye-meets-sinbad.png`, `sagebrush-trail.jpg`, `santa-claus-conquers-the-martians.jpg`,
+  `the-dance-of-life.jpg`, `the-great-flamarion.jpg`, `the-man-with-the-golden-arm.jpg`
+];
+const filmName = [`Фильм один`, `Фильм два`, `Фильм три`];
 
 const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
 const getComments = () => commentsArray[getRandom(0, commentsArray.length - 1)];
 const getFilmDescription = () => descriptionList[getRandom(0, 5)];
+const getPoster = () => postersArr[getRandom(0, postersArr.length - 1)];
+const getFilmName = () => filmName[getRandom(0, filmName.length - 1)];
 
 export const generatefilmCard = () => {
   return {
-    name: getRandom(),
-    poster: getPoster(),
+    name: getFilmName(),
+    poster: `/public/images/posters ${getPoster()}`,
     descriprion: getFilmDescription()
   };
 };
