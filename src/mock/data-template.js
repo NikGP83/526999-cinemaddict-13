@@ -20,6 +20,7 @@ const commentDate = [`22.10`, `14.12`, `13.12`]; // возможно функц�
 const productDate = [`2001`, `1983`, `2020`];
 const durationTime = [`1h 36m`, `36m`, `3h 45m`];
 const genreName = [`Comedy`, `Drama`, `Musical`, `Action`];
+const emojiArr = [`angry.png`, `puke.png`, `sleeping.png`, `smile.png`];
 
 const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
 const getComments = () => commentsArray[getRandom(0, 5)];
@@ -29,12 +30,13 @@ const getFilmName = () => filmName[getRandom(0, filmName.length - 1)];
 const getProductDate = () => productDate[getRandom(0, productDate.length - 1)];
 const getDuration = () => durationTime[getRandom(0, durationTime.length - 1)];
 const getGenreName = () => genreName[getRandom(0, genreName.length - 1)];
+const getEmoji = () => emojiArr[getRandom(0, genreName.length - 1)];
 
 export const generatefilmCard = () => {
   return {
     filmName: getFilmName(),
     poster: getPoster(),
-    date: getProductDate(),
+    productDate: getProductDate(),
     duration: getDuration(),
     genre: getGenreName(),
     descriprion: getFilmDescription(),
@@ -46,8 +48,8 @@ export const generatefilmCard = () => {
 export const generateComments = () => {
   return {
     name: getAuthorName(),
-    emotion: getEmotion(),
-    data: getDate(),
+    emoji: getEmoji(),
+    date: getDate(),
     comments: getComments(),
     deleteBtn: deleteBtn()
   };

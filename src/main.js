@@ -7,6 +7,9 @@ import {createShowMoreBtn} from './view/show-more-btn.js';
 import {createExtraFilmBoard} from './view/film-list-extra';
 import {createExtraFilmBoardCommented} from './view/film-list-commented';
 import {createFooterFilmStatistics} from './view/footer-statistics';
+import {createPopupBoard} from './view/popup-window.js';
+import {createPopupFilmCard} from './view/big-film-card.js';
+import {createPopupFilmComments} from './view/popup-film-comments.js';
 import {generatefilmCard} from './mock/data-template.js';
 
 const FILM_PROFILE_NUM = 5;
@@ -53,4 +56,9 @@ const footerStatisticsContainer = document.querySelector(`.footer .footer__stati
 
 render(footerStatisticsContainer, createFooterFilmStatistics(), `beforeend`);
 
+render(footerStatisticsContainer, createPopupBoard(), `afterend`);
 
+const popupFilmContainer = document.querySelector(`.film-details__top-container`);
+
+render(popupFilmContainer, createPopupFilmCard(), `beforeend`);
+render(popupFilmContainer, createPopupFilmComments(), `beforeend`);
