@@ -60,5 +60,5 @@ render(footerStatisticsContainer, createPopupBoard(), `afterend`);
 
 const popupFilmContainer = document.querySelector(`.film-details__top-container`);
 
-render(popupFilmContainer, createPopupFilmCard(), `beforeend`);
+render(popupFilmContainer, createPopupFilmCard(filmProfile[0]), `beforeend`);
 render(popupFilmContainer, createPopupFilmComments(), `beforeend`);
