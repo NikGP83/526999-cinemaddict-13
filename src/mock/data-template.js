@@ -16,10 +16,10 @@ const postersArr = [`made-for-each-other.png`, `popeye-meets-sinbad.png`, `sageb
   `the-dance-of-life.jpg`, `the-great-flamarion.jpg`, `the-man-with-the-golden-arm.jpg`
 ];
 const filmName = [`Фильм один`, `Фильм два`, `Фильм три`];
-const commentDate = [`22.10`, `14.12`, `13.12`]; // возможно фунция с dayjs
+const commentDate = [`22.10`, `14.12`, `13.12`]; // возможно функция с dayjs
 const productDate = [`2001`, `1983`, `2020`];
 const durationTime = [`1h 36m`, `36m`, `3h 45m`];
-const genreName = [`Comedy`, `Drama`, `Musical`];
+const genreName = [`Comedy`, `Drama`, `Musical`, `Action`];
 
 const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
 const getComments = () => commentsArray[getRandom(0, 5)];
@@ -33,7 +33,7 @@ const getGenreName = () => genreName[getRandom(0, genreName.length - 1)];
 export const generatefilmCard = () => {
   return {
     filmName: getFilmName(),
-    poster: `/public/images/posters/${getPoster()}`,
+    poster: getPoster(),
     date: getProductDate(),
     duration: getDuration(),
     genre: getGenreName(),

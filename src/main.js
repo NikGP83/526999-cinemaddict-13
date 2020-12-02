@@ -33,7 +33,7 @@ const MAX_FULL_FILM_CARDS = 5;
 
 
 for (let i = 0; i <= MAX_FULL_FILM_CARDS - 1; i++) {
-  render(filmsListContainer, createFilmCard(), `beforeend`);
+  render(filmsListContainer, createFilmCard(filmProfile[i]), `beforeend`);
 }
 
 render(filmsListContainer, createShowMoreBtn(), `afterend`);
@@ -45,7 +45,7 @@ const extraFilmList = siteMainElement.querySelector(`.films-list--extra .films-l
 const extraFilmListCommented = siteMainElement.querySelector(`.films-list--extra:last-child .films-list__container`);
 
 for (let i = 0; i < MAX_SPECIAL_FILM_CARDS; i++) {
-  render(extraFilmList, createFilmCard(), `beforeend`);
+  render(extraFilmList, createFilmCard(filmProfile[i]), `beforeend`);
   render(extraFilmListCommented, createFilmCard(filmProfile[i]), `beforeend`);
 }
 
