@@ -1,6 +1,6 @@
 export const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const descriptionList = [`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+const shortDescriptionList = [`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
   `Cras aliquet varius magna, non porta ligula feugiat eget.`,
   `Fusce tristique felis at fermentum pharetra.`, `Aliquam id orci ut lectus varius viverra.`,
   `Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.`,
@@ -35,7 +35,7 @@ const fullDescriptionArr = [`Lorem ipsum dolor sit amet, consectetur adipiscing 
 
 const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
 const getComments = () => commentsArray[getRandom(0, 5)];
-const getFilmDescription = () => descriptionList[getRandom(0, 5)];
+const getShortFilmDescription = () => shortDescriptionList[getRandom(0, 5)];
 const getPoster = () => postersArr[getRandom(0, postersArr.length - 1)];
 const getFilmName = () => filmName[getRandom(0, filmName.length - 1)];
 const getProductDate = () => productDate[getRandom(0, productDate.length - 1)];
@@ -62,7 +62,7 @@ export const generatefilmCard = () => {
     productDate: getProductDate(),
     duration: getDuration(),
     genre: getGenreName(),
-    descriprion: getFilmDescription(),
+    descriprion: getShortFilmDescription(),
     fullDescription: getFullDesctiption(),
     rating: getRandom(1, 9),
     commentsNum: getRandom(0, 199)
