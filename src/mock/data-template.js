@@ -1,4 +1,6 @@
-export const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+import {
+  getRandom
+} from '../util.js';
 
 const shortDescriptionList = [`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
   `Cras aliquet varius magna, non porta ligula feugiat eget.`,
@@ -31,7 +33,12 @@ const fullDescriptionArr = [`Lorem ipsum dolor sit amet, consectetur adipiscing 
   Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.
   Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae,
   sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-  Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`]
+  Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`];
+const filmCount = 10 + getRandom(0, 40);
+
+let lastUsedId = 1;
+const filmsArray = [];
+const commentArray = [];
 
 const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
 const getComments = () => commentsArray[getRandom(0, 5)];
@@ -49,9 +56,11 @@ const getCastNames = () => castNamesArr[getRandom(0, castNamesArr.length - 1)];
 const getCountryName = () => countryNameArr[getRandom(0, countryNameArr.length - 1)];
 const getFullDesctiption = () => fullDescriptionArr[0];
 const getDate = () => commentDate[getRandom(0, commentDate.length - 1)];
+const generateNextId = () => ++lastUsedId;
 
 export const generatefilmCard = () => {
   return {
+    id: generateNextId(),
     filmName: getFilmName(),
     originalName: getOriginalName(),
     poster: getPoster(),
@@ -69,12 +78,23 @@ export const generatefilmCard = () => {
   };
 };
 
-export const generateComments = () => {
+export const generateCommentsBlock = (filmId) => {
   return {
+    id: generateNextId(),
+    filmId,
     name: getAuthorName(),
     emoji: getEmoji(),
     date: getDate(),
     comments: getComments(),
-    deleteBtn: deleteBtn()
+    deleteBtn: true
   };
 };
+
+new Array(filmCount).fill().forEach(() => {
+  const tempFilmCard = generatefilmCard();
+  filmsArray.push(tempFilmCard);
+  const tempFilmCommentArray = new Array(tempFilmCard.num).fill().map(() => generateCommentsBlock(tempFilmCard.id));
+  commentArray.push(...tempFilmCommentArray);
+});
+export const getFilmData = () => filmsArray;
+export const getCommentsData = () => commentArray;

@@ -10,12 +10,11 @@ import {createFooterFilmStatistics} from './view/footer-statistics';
 import {createPopupBoard} from './view/popup-window.js';
 import {createPopupFilmCard} from './view/big-film-card.js';
 import {createPopupFilmComments} from './view/popup-film-comments.js';
-import {generatefilmCard} from './mock/data-template.js';
+import {getFilmData} from './mock/data-template.js';
+import {getCommentsData} from './mock/data-template.js';
 
-const FILM_PROFILE_NUM = 5;
+const filmProfile = getFilmData();
 
-const filmProfile = new Array(FILM_PROFILE_NUM).fill().map(generatefilmCard);
-console.log(filmProfile);
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
@@ -34,8 +33,8 @@ const filmMainSection = siteMainElement.querySelector(`.films`);
 const filmsListContainer = filmMainSection.querySelector(`.films-list__container`);
 const MAX_FULL_FILM_CARDS = 5;
 
-
-for (let i = 0; i <= MAX_FULL_FILM_CARDS - 1; i++) {
+const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
+for (let i = 0; i < limit; i++) {
   render(filmsListContainer, createFilmCard(filmProfile[i]), `beforeend`);
 }
 
@@ -59,6 +58,7 @@ render(footerStatisticsContainer, createFooterFilmStatistics(), `beforeend`);
 render(footerStatisticsContainer, createPopupBoard(), `afterend`);
 
 const popupFilmContainer = document.querySelector(`.film-details__top-container`);
-
-render(popupFilmContainer, createPopupFilmCard(filmProfile[0]), `beforeend`);
+let x = 0;
+render(popupFilmContainer, createPopupFilmCard(filmProfile[x]), `beforeend`);
+const filmComments = getCommentsData().filter((el) => el.filmId === filmProfile[x].id);
 render(popupFilmContainer, createPopupFilmComments(), `beforeend`);
