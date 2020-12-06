@@ -93,7 +93,7 @@ export const generateCommentsBlock = (filmId) => {
 new Array(filmCount).fill().forEach(() => {
   const tempFilmCard = generatefilmCard();
   filmsArray.push(tempFilmCard);
-  const tempFilmCommentArray = new Array(tempFilmCard.num).fill().map(() => generateCommentsBlock(tempFilmCard.id));
+  const tempFilmCommentArray = new Array(tempFilmCard.commentsNum).fill().map(() => generateCommentsBlock(tempFilmCard.id));
   commentArray.push(...tempFilmCommentArray);
 });
 export const getFilmData = () => filmsArray;

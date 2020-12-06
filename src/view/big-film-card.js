@@ -1,9 +1,10 @@
 export const createPopupFilmCard = (filmProfile) => {
   const {filmName, fullDescription, genre, duration, productDate, originalName, poster, director, country, screenwriters, cast, rating} = filmProfile;
 
-  return `<div class="film-details__close">
+  return ` <div class="film-details__top-container">
+    <div class="film-details__close">
     <button class="film-details__close-btn" type="button">close</button>
-  </div>
+    </div>
   <div class="film-details__info-wrap">
     <div class="film-details__poster">
       <img class="film-details__poster-img" src="./images/posters/${poster}" alt="">
@@ -60,5 +61,18 @@ export const createPopupFilmCard = (filmProfile) => {
       <p class="film-details__film-description">
         ${fullDescription}
       </p>
+      </div>
+  </div>
+
+  <section class="film-details__controls">
+        <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
+        <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
+
+        <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched">
+        <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
+
+        <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
+        <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
+      </section>
   </div>`;
 };

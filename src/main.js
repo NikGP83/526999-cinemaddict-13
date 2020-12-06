@@ -57,7 +57,7 @@ render(footerStatisticsContainer, createFooterFilmStatistics(), `beforeend`);
 
 render(footerStatisticsContainer, createPopupBoard(), `afterend`);
 
-const popupFilmContainer = document.querySelector(`.film-details__top-container`);
+const popupFilmContainer = document.querySelector(`.film-details__inner`);
 let x = 0;
 render(popupFilmContainer, createPopupFilmCard(filmProfile[x]), `beforeend`);
 const filmComments = getCommentsData().filter((el) => el.filmId === filmProfile[x].id);
