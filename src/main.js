@@ -59,8 +59,19 @@ render(footerStatisticsContainer, createPopupBoard(), `afterend`);
 
 const popupFilmContainer = document.querySelector(`.film-details__inner`);
 
-let x = 0;
-render(popupFilmContainer, createPopupFilmCard(filmProfile[x]), `beforeend`);
-const popupCommentsContainer = document.querySelector(`.film-details__comments-list`);
-const filmComments = getCommentsData().filter((el) => el.filmId === filmProfile[x].id);
-render(popupCommentsContainer, createPopupFilmComments(filmComments[x]), `beforeend`);
+
+for (let i = 0; i < 6; i++) {
+  render(popupFilmContainer, createPopupFilmCard(filmProfile[i]), `beforeend`);
+  const popupCommentsContainer = document.querySelector(`.film-details__comments-list`);
+  const filmComments = getCommentsData().filter((el) => el.filmId === filmProfile[i].id);
+  render(popupCommentsContainer, createPopupFilmComments(filmComments[i]), `beforeend`);
+  console.log(filmComments[i])
+}
+
+const popup = document.querySelector(`.film-details`);
+const popupCloseBtn = document.querySelector(`.film-details__close-btn`);
+popupCloseBtn.addEventListener(`click`, (evt) => {
+  evt.preventDefault();
+  popup.style.display = `none`;
+});
+

@@ -58,10 +58,11 @@ const getFullDesctiption = () => fullDescriptionArr[0];
 const getDate = () => commentDate[getRandom(0, commentDate.length - 1)];
 const generateNextId = () => ++lastUsedId;
 
-export const generatefilmCard = () => {
+const generatefilmCard = () => {
   return {
     id: generateNextId(),
     filmName: getFilmName(),
+    isFavorite: false,
     originalName: getOriginalName(),
     poster: getPoster(),
     director: getDirectorName(),
@@ -78,7 +79,7 @@ export const generatefilmCard = () => {
   };
 };
 
-export const generateCommentsBlock = (filmId) => {
+const generateCommentsBlock = (filmId) => {
   return {
     id: generateNextId(),
     filmId,

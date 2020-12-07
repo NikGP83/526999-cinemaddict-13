@@ -1,4 +1,4 @@
-export const createPopupFilmComments = (filmComments) => {
+export const createPopupFilmComments = (filmComments = {}) => {
   const {name, emoji, date, comments} = filmComments;
   return `
       <li class="film-details__comment">
