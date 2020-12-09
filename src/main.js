@@ -12,15 +12,10 @@ import {createPopupFilmCard} from './view/big-film-card.js';
 import {createPopupFilmComments} from './view/popup-film-comments.js';
 import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
+import {getfiltersDataNum} from './mock/filter.js';
 
 const filmProfile = getFilmData();
-const favorites = filmProfile.filter((el) => el.isFavorite);
-const watchList = filmProfile.filter((el) => el.onWatchlist);
-const history = filmProfile.filter((el) => el.inHistory);
-
-const favoritesCount = favorites.length;
-const watchListCount = watchList.length;
-const historyCount = history.length;
+const filters = getfiltersDataNum();
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -32,13 +27,14 @@ const siteHeader = document.querySelector(`.header`);
 render(siteHeader, createUserRankTemplate(), `beforeend`);
 
 const siteMainElement = document.querySelector(`.main`);
-render(siteMainElement, createMainNavigationMenu({favoritesCount, watchListCount, historyCount}), `afterbegin`);
+render(siteMainElement, createMainNavigationMenu(filters), `afterbegin`);
 render(siteMainElement, createFIlterList(), `beforeend`);
 render(siteMainElement, createItemBoard(), `beforeend`);
 
 const filmMainSection = siteMainElement.querySelector(`.films`);
 const filmsListContainer = filmMainSection.querySelector(`.films-list__container`);
 const MAX_FULL_FILM_CARDS = 5;
+const FILM_CARDS_PER_STEP = 5;
 
 const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
 for (let i = 0; i < limit; i++) {
@@ -78,12 +74,28 @@ const popupCommentsContainer = document.querySelector(`.film-details__comments-l
 const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
 currentFilmComments.forEach((el) => render(popupCommentsContainer, createPopupFilmComments(el), `beforeend`));
 
+if (filmProfile.length > FILM_CARDS_PER_STEP) {
+  let renderFilmCount = FILM_CARDS_PER_STEP;
+  const loadMoreBtn = document.querySelector(`.films-list__show-more`);
+
+  const getMoreFilmCards = (evt) => {
+    evt.preventDefault();
+    filmProfile.slice(renderFilmCount, renderFilmCount + FILM_CARDS_PER_STEP).forEach((el) => render(filmsListContainer, createFilmCard(el), `beforeend`));
+    renderFilmCount += FILM_CARDS_PER_STEP;
+    if (renderFilmCount >= filmProfile.length) {
+      loadMoreBtn.remove();
+    }
+  };
+  loadMoreBtn.addEventListener(`click`, getMoreFilmCards);
+}
+
 const popup = document.querySelector(`.film-details`);
 const popupCloseBtn = document.querySelector(`.film-details__close-btn`);
 
 const filmBoardForOpenPopapOloloTrololo = document.querySelector(`.films-list__container`);
 
 const openPopap = () =>(popup.style.display = `block`);
+
 filmBoardForOpenPopapOloloTrololo.addEventListener(`click`, openPopap);
 
 const closePopap = (evt) => {

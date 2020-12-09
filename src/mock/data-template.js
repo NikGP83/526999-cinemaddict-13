@@ -100,3 +100,4 @@ new Array(filmCount).fill().forEach(() => {
 });
 export const getFilmData = () => filmsArray;
 export const getCommentsData = () => commentArray;
+
