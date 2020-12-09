@@ -57,12 +57,14 @@ const getCountryName = () => countryNameArr[getRandom(0, countryNameArr.length -
 const getFullDesctiption = () => fullDescriptionArr[0];
 const getDate = () => commentDate[getRandom(0, commentDate.length - 1)];
 const generateNextId = () => ++lastUsedId;
+const getFilterAnswer = () => Boolean(getRandom(0, 1));
 
 const generatefilmCard = () => {
   return {
     id: generateNextId(),
     filmName: getFilmName(),
-    isFavorite: false,
+    isFavorite: getFilterAnswer(),
+    isDefault: getFilterAnswer(),
     originalName: getOriginalName(),
     poster: getPoster(),
     director: getDirectorName(),
@@ -75,7 +77,7 @@ const generatefilmCard = () => {
     descriprion: getShortFilmDescription(),
     fullDescription: getFullDesctiption(),
     rating: getRandom(1, 9),
-    commentsNum: getRandom(0, 199)
+    commentsNum: getRandom(0, 10)
   };
 };
 

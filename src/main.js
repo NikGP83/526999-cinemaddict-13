@@ -59,19 +59,27 @@ render(footerStatisticsContainer, createPopupBoard(), `afterend`);
 
 const popupFilmContainer = document.querySelector(`.film-details__inner`);
 
+let chosenFilmCard = 0;
 
-for (let i = 0; i < 6; i++) {
-  render(popupFilmContainer, createPopupFilmCard(filmProfile[i]), `beforeend`);
+render(popupFilmContainer, createPopupFilmCard(filmProfile[chosenFilmCard]), `beforeend`);
+for (let i = 0; i < filmProfile[i].commentsNum; i++) {
   const popupCommentsContainer = document.querySelector(`.film-details__comments-list`);
   const filmComments = getCommentsData().filter((el) => el.filmId === filmProfile[i].id);
   render(popupCommentsContainer, createPopupFilmComments(filmComments[i]), `beforeend`);
-  console.log(filmComments[i])
 }
+
 
 const popup = document.querySelector(`.film-details`);
 const popupCloseBtn = document.querySelector(`.film-details__close-btn`);
-popupCloseBtn.addEventListener(`click`, (evt) => {
+
+const filmBoardForOpenPopapOloloTrololo = document.querySelector(`.films-list__container`);
+
+const openPopap = () =>(popup.style.display = `block`);
+filmBoardForOpenPopapOloloTrololo.addEventListener(`click`, openPopap);
+
+const closePopap = (evt) => {
   evt.preventDefault();
   popup.style.display = `none`;
-});
+};
+popupCloseBtn.addEventListener(`click`, closePopap);
 
