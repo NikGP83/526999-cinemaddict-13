@@ -1,6 +1,5 @@
-import {
-  getRandom
-} from '../util.js';
+import {getRandom} from '../util.js';
+import {humanizeTaskDueDate} from '../util.js';
 
 const shortDescriptionList = [`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
   `Cras aliquet varius magna, non porta ligula feugiat eget.`,
@@ -18,7 +17,6 @@ const postersArr = [`made-for-each-other.png`, `popeye-meets-sinbad.png`, `sageb
   `the-dance-of-life.jpg`, `the-great-flamarion.jpg`, `the-man-with-the-golden-arm.jpg`
 ];
 const filmName = [`Фильм один`, `Фильм два`, `Фильм три`];
-const commentDate = [`2020.10.14`, `2019.12.12`, `2013.12.10`]; // возможно функция с dayjs
 const productDate = [`2001`, `1983`, `2020`];
 const durationTime = [`1h 36m`, `36m`, `3h 45m`];
 const genreName = [`Comedy`, `Drama`, `Musical`, `Action`];
@@ -55,7 +53,7 @@ const getScreenwritersName = () => screenwritersNameArr[getRandom(0, screenwrite
 const getCastNames = () => castNamesArr[getRandom(0, castNamesArr.length - 1)];
 const getCountryName = () => countryNameArr[getRandom(0, countryNameArr.length - 1)];
 const getFullDesctiption = () => fullDescriptionArr[0];
-const getDate = () => commentDate[getRandom(0, commentDate.length - 1)];
+const getDate = () => humanizeTaskDueDate();
 const generateNextId = () => ++lastUsedId;
 const getFilterAnswer = () => Boolean(getRandom(0, 1));
 
