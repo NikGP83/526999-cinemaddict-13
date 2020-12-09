@@ -39,7 +39,7 @@ const filmsArray = [];
 const commentArray = [];
 
 const getAuthorName = () => authorName[getRandom(0, authorName.length - 1)];
-const getComments = () => commentsArray[getRandom(0, 5)];
+const getComments = () => commentsArray[getRandom(0, commentsArray.length - 1)];
 const getShortFilmDescription = () => shortDescriptionList[getRandom(0, 5)];
 const getPoster = () => postersArr[getRandom(0, postersArr.length - 1)];
 const getFilmName = () => filmName[getRandom(0, filmName.length - 1)];
@@ -62,7 +62,8 @@ const generatefilmCard = () => {
     id: generateNextId(),
     filmName: getFilmName(),
     isFavorite: getFilterAnswer(),
-    isDefault: getFilterAnswer(),
+    inHistory: getFilterAnswer(),
+    onWatchlist: getFilterAnswer(),
     originalName: getOriginalName(),
     poster: getPoster(),
     director: getDirectorName(),

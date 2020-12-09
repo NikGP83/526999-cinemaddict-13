@@ -14,6 +14,13 @@ import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
 
 const filmProfile = getFilmData();
+const favorites = filmProfile.filter((el) => el.isFavorite);
+const watchList = filmProfile.filter((el) => el.onWatchlist);
+const history = filmProfile.filter((el) => el.inHistory);
+
+const favoritesCount = favorites.length;
+const watchListCount = watchList.length;
+const historyCount = history.length;
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -25,7 +32,7 @@ const siteHeader = document.querySelector(`.header`);
 render(siteHeader, createUserRankTemplate(), `beforeend`);
 
 const siteMainElement = document.querySelector(`.main`);
-render(siteMainElement, createMainNavigationMenu(), `afterbegin`);
+render(siteMainElement, createMainNavigationMenu({favoritesCount, watchListCount, historyCount}), `afterbegin`);
 render(siteMainElement, createFIlterList(), `beforeend`);
 render(siteMainElement, createItemBoard(), `beforeend`);
 
@@ -68,8 +75,6 @@ render(popupFilmContainer, createPopupFilmCard(film), `beforeend`);
 const popupCommentsContainer = document.querySelector(`.film-details__comments-list`);
 
 
-
-render(popupFilmContainer, createPopupFilmCard(film), `beforeend`);
 const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
 currentFilmComments.forEach((el) => render(popupCommentsContainer, createPopupFilmComments(el), `beforeend`));
 
