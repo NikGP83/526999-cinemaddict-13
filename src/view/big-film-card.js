@@ -1,5 +1,5 @@
 export const createPopupFilmCard = (filmProfile = {}) => {
-  const {filmName, fullDescription, genre, duration, productDate, originalName, poster, director, country, screenwriters, cast, rating, commentsNum} = filmProfile;
+  const {adultRating, filmName, fullDescription, genre, duration, productDate, originalName, poster, director, country, screenwriters, cast, rating, commentsNum} = filmProfile;
 
   return ` <div class="film-details__top-container">
     <div class="film-details__close">
@@ -9,7 +9,7 @@ export const createPopupFilmCard = (filmProfile = {}) => {
     <div class="film-details__poster">
       <img class="film-details__poster-img" src="./images/posters/${poster}" alt="">
 
-      <p class="film-details__age">18+</p>
+      <p class="film-details__age">${adultRating}+</p>
     </div>
 
     <div class="film-details__info">

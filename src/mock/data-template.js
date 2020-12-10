@@ -87,6 +87,7 @@ const generateCommentsBlock = (filmId) => {
     name: getAuthorName(),
     emoji: getEmoji(),
     date: getDate(),
+    adultRating: getRandom(0, 18),
     comments: getComments(),
     deleteBtn: true
   };
