@@ -1,4 +1,4 @@
-import {createUserRankTemplate} from './view/user-rank.js';
+import UserRankView from './view/user-rank.js';
 import {createMainNavigationMenu} from './view/main-navigation-menu.js';
 import {createFIlterList} from './view/filter-list.js';
 import {createItemBoard} from './view/item-board.js';
@@ -13,18 +13,15 @@ import {createPopupFilmComments} from './view/popup-film-comments.js';
 import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
 import {getfiltersDataNum} from './mock/filter.js';
+import {RenderPosition, renderElement, render} from './util.js';
 
 const filmProfile = getFilmData();
 const filters = getfiltersDataNum();
 
-const render = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
-
 const siteHeader = document.querySelector(`.header`);
 
 
-render(siteHeader, createUserRankTemplate(), `beforeend`);
+render(siteHeader, new UserRankView().getElement(), RenderPosition.BEFOREEND);
 
 const siteMainElement = document.querySelector(`.main`);
 render(siteMainElement, createMainNavigationMenu(filters), `afterbegin`);
