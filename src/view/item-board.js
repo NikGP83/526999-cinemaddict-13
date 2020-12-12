@@ -1,4 +1,6 @@
-export const createItemBoard = () => {
+import {createElement} from '../util.js';
+
+const createItemBoard = () => {
   return `<section class="films">
   <section class="films-list">
     <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
@@ -6,3 +8,25 @@ export const createItemBoard = () => {
     </section>
   </section>`;
 };
+
+export default class ItemBoard {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createItemBoard();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate);
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+

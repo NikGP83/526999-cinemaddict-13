@@ -7,7 +7,7 @@ const createUserRankTemplate = () => {
 </section>`;
 };
 
-export default class UserRankView {
+export default class UserRank {
   constructor() {
     this._element = null;
   }

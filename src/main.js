@@ -1,7 +1,7 @@
 import UserRankView from './view/user-rank.js';
-import {createMainNavigationMenu} from './view/main-navigation-menu.js';
-import {createFIlterList} from './view/filter-list.js';
-import {createItemBoard} from './view/item-board.js';
+import MainNavigationMenuView from './view/main-navigation-menu.js';
+import FIlterListView from './view/filter-list.js';
+import ItemBoardView from './view/item-board.js';
 import {createFilmCard} from './view/film-card.js';
 import {createShowMoreBtn} from './view/show-more-btn.js';
 import {createExtraFilmBoard} from './view/film-list-extra';
@@ -13,7 +13,7 @@ import {createPopupFilmComments} from './view/popup-film-comments.js';
 import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
 import {getfiltersDataNum} from './mock/filter.js';
-import {RenderPosition, renderElement, render} from './util.js';
+import {RenderPosition, render} from './util.js';
 
 const filmProfile = getFilmData();
 const filters = getfiltersDataNum();
@@ -24,9 +24,9 @@ const siteHeader = document.querySelector(`.header`);
 render(siteHeader, new UserRankView().getElement(), RenderPosition.BEFOREEND);
 
 const siteMainElement = document.querySelector(`.main`);
-render(siteMainElement, createMainNavigationMenu(filters), `afterbegin`);
-render(siteMainElement, createFIlterList(), `beforeend`);
-render(siteMainElement, createItemBoard(), `beforeend`);
+render(siteMainElement, new MainNavigationMenuView(filters).getElement(), RenderPosition.AFTERBEGIN);
+render(siteMainElement, new FIlterListView().getElement(), RenderPosition.BEFOREEND);
+render(siteMainElement, new ItemBoardView().getElement(), RenderPosition.BEFOREEND);
 
 const filmMainSection = siteMainElement.querySelector(`.films`);
 const filmsListContainer = filmMainSection.querySelector(`.films-list__container`);
