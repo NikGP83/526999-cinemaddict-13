@@ -2,7 +2,7 @@ import UserRankView from './view/user-rank.js';
 import MainNavigationMenuView from './view/main-navigation-menu.js';
 import FIlterListView from './view/filter-list.js';
 import ItemBoardView from './view/item-board.js';
-import {createFilmCard} from './view/film-card.js';
+import FilmCardView from './view/film-card.js';
 import {createShowMoreBtn} from './view/show-more-btn.js';
 import {createExtraFilmBoard} from './view/film-list-extra';
 import {createExtraFilmBoardCommented} from './view/film-list-commented';
@@ -28,14 +28,17 @@ render(siteMainElement, new MainNavigationMenuView(filters).getElement(), Render
 render(siteMainElement, new FIlterListView().getElement(), RenderPosition.BEFOREEND);
 render(siteMainElement, new ItemBoardView().getElement(), RenderPosition.BEFOREEND);
 
+
+
 const filmMainSection = siteMainElement.querySelector(`.films`);
 const filmsListContainer = filmMainSection.querySelector(`.films-list__container`);
+const itemsBoard = new ItemBoardView();
 const MAX_FULL_FILM_CARDS = 5;
 const FILM_CARDS_PER_STEP = 5;
 
 const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
 for (let i = 0; i < limit; i++) {
-  render(filmsListContainer, createFilmCard(filmProfile[i]), `beforeend`);
+  render(filmsListContainer, new FilmCardView(filmProfile[i]).getElement(), RenderPosition.BEFOREEND);
 }
 
 render(filmsListContainer, createShowMoreBtn(), `afterend`);
