@@ -1,7 +1,7 @@
 import {createElement} from '../util.js';
 
 const createPopupFilmCard = (filmProfile = {}) => {
-  const {adultRating, filmName, fullDescription, genre, duration, productDate, originalName, poster, director, country, screenwriters, cast, rating, commentsNum} = filmProfile;
+  const {adultRating, filmName, fullDescription, genre, duration, productDate, originalName, poster, director, country, screenwriters, cast, rating} = filmProfile;
 
   return `<div class="film-details__top-container">
     <div class="film-details__close">

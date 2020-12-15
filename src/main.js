@@ -68,7 +68,7 @@ render(popupFilmContainer, new PopupFilmCardView(film).getElement(), RenderPosit
 render(popupFilmContainer, new PopupBottomCardView(film).getElement(), RenderPosition.BEFOREEND);
 
 const popupCommentsContainer = document.querySelector(`.film-details__comments-list`);
-console.log(popupCommentsContainer)
+
 
 const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
 currentFilmComments.forEach((el) => render(popupCommentsContainer, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
