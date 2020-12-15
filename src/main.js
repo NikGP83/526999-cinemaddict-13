@@ -8,7 +8,8 @@ import ExtraFilmBoardView from './view/film-list-extra';
 import ExtraFilmBoardCommentedView from './view/film-list-commented';
 import FooterFilmStatisticsView from './view/footer-statistics';
 import PopupBoardView from './view/popup-window.js';
-import PopupFilmCardView from './view/popup-film-card.js';
+import PopupFilmCardView from './view/popup-top-card.js';
+import PopupBottomCardView from './view/popup-bottom-card.js';
 import PopupFilmCommentsView from './view/popup-film-comments.js';
 import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
@@ -51,11 +52,12 @@ for (let i = 0; i < MAX_SPECIAL_FILM_CARDS; i++) {
   render(extraFilmListCommented, new FilmCardView(filmProfile[i]).getElement(), RenderPosition.BEFOREEND);
 }
 
+const footerContainer = document.querySelector(`.footer`);
 const footerStatisticsContainer = document.querySelector(`.footer .footer__statistics`);
 
 render(footerStatisticsContainer, new FooterFilmStatisticsView().getElement(), RenderPosition.BEFOREEND);
 
-render(footerStatisticsContainer, new PopupBoardView().getElement(), `afterend`); // в вопросы местоположение
+render(footerContainer, new PopupBoardView().getElement(), RenderPosition.AFTEREND);
 
 const popupFilmContainer = document.querySelector(`.film-details__inner`);
 
@@ -63,10 +65,10 @@ const popupFilmContainer = document.querySelector(`.film-details__inner`);
 let chosenFilmCard = 0;
 const film = filmProfile[chosenFilmCard];
 render(popupFilmContainer, new PopupFilmCardView(film).getElement(), RenderPosition.BEFOREEND);
-
+render(popupFilmContainer, new PopupBottomCardView(film).getElement(), RenderPosition.BEFOREEND);
 
 const popupCommentsContainer = document.querySelector(`.film-details__comments-list`);
-
+console.log(popupCommentsContainer)
 
 const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
 currentFilmComments.forEach((el) => render(popupCommentsContainer, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
