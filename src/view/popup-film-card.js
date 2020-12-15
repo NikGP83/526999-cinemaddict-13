@@ -1,4 +1,6 @@
-export const createPopupFilmCard = (filmProfile = {}) => {
+import {createElement} from '../util.js';
+
+const createPopupFilmCard = (filmProfile = {}) => {
   const {adultRating, filmName, fullDescription, genre, duration, productDate, originalName, poster, director, country, screenwriters, cast, rating, commentsNum} = filmProfile;
 
   return ` <div class="film-details__top-container">
@@ -116,3 +118,25 @@ export const createPopupFilmCard = (filmProfile = {}) => {
   </section>
 </div>`;
 };
+
+
+export default class PopupFilmCard {
+  constructor(filmProfile) {
+    this._filmProfile = filmProfile;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createPopupFilmCard(this._filmProfile);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+  removeElement() {
+    this._element = null;
+  }
+}

@@ -1,4 +1,6 @@
-export const createPopupFilmComments = (filmComments = {}) => {
+import {createElement} from '../util.js';
+
+const createPopupFilmComments = (filmComments = {}) => {
   const {name, emoji, date, comments} = filmComments;
   return `
       <li class="film-details__comment">
@@ -15,3 +17,24 @@ export const createPopupFilmComments = (filmComments = {}) => {
         </div>
     </li>`;
 };
+
+export default class PopupFilmComments {
+  constructor(filmComments) {
+    this._filmComments = filmComments;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createPopupFilmComments(this._filmComments);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+  removeElement() {
+    this._element = null;
+  }
+}
