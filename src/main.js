@@ -39,7 +39,7 @@ for (let i = 0; i < limit; i++) {
   render(filmsListContainer, new FilmCardView(filmProfile[i]).getElement(), RenderPosition.BEFOREEND);
 }
 
-render(filmsListContainer, new ShowMoreBtnView().getElement(), RenderPosition.BEFOREEND);
+render(filmsListContainer, new ShowMoreBtnView().getElement(), RenderPosition.AFTEREND);
 render(filmMainSection, new ExtraFilmBoardView().getElement(), RenderPosition.BEFOREEND);
 render(filmMainSection, new ExtraFilmBoardCommentedView().getElement(), RenderPosition.BEFOREEND);
 
