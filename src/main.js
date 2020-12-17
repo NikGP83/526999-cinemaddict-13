@@ -39,24 +39,30 @@ const openPopup = (film) => {
   document.querySelector(`body`).classList.add(`hide-overflow`);
   const popup = new PopupBoardView().getElement();
   render(footerContainer, popup, RenderPosition.AFTEREND);
-  const popupFilmContainer = popup.querySelector(`.film-details__inner`);
-  render(popupFilmContainer, new PopupFilmCardView(film).getElement(), RenderPosition.BEFOREEND);
-  render(popupFilmContainer, new PopupBottomCardView(film).getElement(), RenderPosition.BEFOREEND);
-  const popupCommentsContainer = document.querySelector(`.film-details__comments-list`);
+  render(popup, new PopupFilmCardView(film).getElement(), RenderPosition.BEFOREEND);
+  render(popup, new PopupBottomCardView(film).getElement(), RenderPosition.BEFOREEND);
   const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
-  currentFilmComments.forEach((el) => render(popupCommentsContainer, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
-  popup.querySelector(`.film-details__close-btn`).addEventListener(`click`, () => {
+  currentFilmComments.forEach((el) => render(popup, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
+  popup.querySelector(`.film-details__close-btn`).addEventListener(`click`, (evt) => {
     document.querySelector(`body`).classList.remove(`hide-overflow`);
-    popup.parentElement.removeChild(popup)});
+    evt.preventDefault();
+    popup.parentElement.removeChild(popup);
+  });
 };
 
 const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
 for (let i = 0; i < limit; i++) {
   const view = new FilmCardView(filmProfile[i]).getElement();
   render(filmsListContainer, view, RenderPosition.BEFOREEND);
-  view.querySelector(`.film-card__poster`).addEventListener(`click`, () => {openPopup(filmProfile[i])});
-  view.querySelector(`.film-card__title`).addEventListener(`click`, () => {openPopup(filmProfile[i])});
-  view.querySelector(`.film-card__comments`).addEventListener(`click`, () => {openPopup(filmProfile[i])});
+  view.querySelector(`.film-card__poster`).addEventListener(`click`, () => {
+    openPopup(filmProfile[i]);
+  });
+  view.querySelector(`.film-card__title`).addEventListener(`click`, () => {
+    openPopup(filmProfile[i]);
+  });
+  view.querySelector(`.film-card__comments`).addEventListener(`click`, () => {
+    openPopup(filmProfile[i]);
+  });
 }
 
 render(filmsListContainer, new ShowMoreBtnView().getElement(), RenderPosition.AFTEREND);

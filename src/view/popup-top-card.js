@@ -94,7 +94,6 @@ export default class PopupFilmCard {
   getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
-      this._element.querySelector(`.film-details__close-btn`).addEventListener(`click`, () => {console.log(`close`)})
     }
     return this._element;
   }
