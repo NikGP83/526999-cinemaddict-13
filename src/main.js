@@ -8,9 +8,6 @@ import ExtraFilmBoardView from './view/film-list-extra';
 import ExtraFilmBoardCommentedView from './view/film-list-commented';
 import FooterFilmStatisticsView from './view/footer-statistics';
 import PopupBoardView from './view/popup-window.js';
-import PopupFilmCardView from './view/popup-top-card.js';
-import PopupBottomCardView from './view/popup-bottom-card.js';
-import PopupFilmCommentsView from './view/popup-film-comments.js';
 import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
 import {getfiltersDataNum} from './mock/filter.js';
@@ -37,12 +34,12 @@ const FILM_CARDS_PER_STEP = 5;
 
 const openPopup = (film) => {
   document.querySelector(`body`).classList.add(`hide-overflow`);
-  const popup = new PopupBoardView().getElement();
-  render(footerContainer, popup, RenderPosition.AFTEREND);
-  render(popup, new PopupFilmCardView(film).getElement(), RenderPosition.BEFOREEND);
-  render(popup, new PopupBottomCardView(film).getElement(), RenderPosition.BEFOREEND);
   const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
-  currentFilmComments.forEach((el) => render(popup, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
+  const popup = new PopupBoardView(film, currentFilmComments).getElement();
+  render(footerContainer, popup, RenderPosition.AFTEREND);
+  // render(popup, new PopupFilmCardView(film).getElement(), RenderPosition.BEFOREEND);
+  // render(popup, new PopupBottomCardView(film).getElement(), RenderPosition.BEFOREEND);
+  // currentFilmComments.forEach((el) => render(popup, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
   popup.querySelector(`.film-details__close-btn`).addEventListener(`click`, (evt) => {
     document.querySelector(`body`).classList.remove(`hide-overflow`);
     evt.preventDefault();
