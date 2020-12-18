@@ -76,7 +76,8 @@ const generatefilmCard = () => {
     descriprion: getShortFilmDescription(),
     fullDescription: getFullDesctiption(),
     rating: getRandom(1, 9),
-    commentsNum: getRandom(0, 10)
+    commentsNum: getRandom(0, 10),
+    adultRating: getRandom(0, 18)
   };
 };
 
