@@ -23,9 +23,10 @@ export default class PopupBoard extends AbstractView {
 
   createElements() {
     const temp = createElement(this.getTemplate());
-    render(temp, new PopupFilmCardView(this._filmprofile).getElement(), RenderPosition.BEFOREEND);
-    render(temp, new PopupBottomCardView(this._filmprofile).getElement(), RenderPosition.BEFOREEND);
-    this._filmcomments.forEach((el) => render(temp, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
+    render(temp, new PopupFilmCardView(this._filmprofile), RenderPosition.BEFOREEND);
+    render(temp, new PopupBottomCardView(this._filmprofile), RenderPosition.BEFOREEND);
+    const commentContainer = temp.querySelector(`.film-details__comments-list`);
+    this._filmcomments.forEach((el) => render(commentContainer, new PopupFilmCommentsView(el), RenderPosition.BEFOREEND));
     return temp;
   }
 
