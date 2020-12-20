@@ -23,6 +23,6 @@ export default class PopupFilmComments extends AbstractView {
     this._filmComments = filmComments;
   }
   getTemplate() {
-    return createPopupFilmComments();
+    return createPopupFilmComments(this._filmComments);
   }
 }

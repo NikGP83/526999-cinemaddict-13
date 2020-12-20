@@ -1,7 +1,8 @@
-import {createElement, render, RenderPosition} from '../util.js';
+import {createElement, render, RenderPosition} from '../render.js';
 import PopupFilmCardView from './popup-film-card.js';
 import PopupBottomCardView from './popup-bottom-card.js';
 import PopupFilmCommentsView from './popup-film-comments.js';
+import AbstractView from './abstract.js';
 const createPopupBoard = () => {
   return `<section class="film-details">
   <form class="film-details__inner" action="" method="get">
@@ -9,11 +10,11 @@ const createPopupBoard = () => {
   </section>`;
 };
 
-export default class PopupBoard {
+export default class PopupBoard extends AbstractView {
   constructor(filmprofile, filmComments) {
+    super();
     this._filmprofile = filmprofile;
     this._filmcomments = filmComments;
-    this._element = null;
   }
 
   getTemplate() {
@@ -33,8 +34,5 @@ export default class PopupBoard {
       this._element = this.createElements();
     }
     return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }

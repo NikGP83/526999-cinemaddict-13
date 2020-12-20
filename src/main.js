@@ -11,7 +11,7 @@ import PopupBoardView from './view/popup-board.js';
 import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
 import {getfiltersDataNum} from './mock/filter.js';
-import {RenderPosition, render} from './util.js';
+import {RenderPosition, render} from './render.js';
 
 const filmProfile = getFilmData();
 const filters = getfiltersDataNum();
