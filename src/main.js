@@ -37,9 +37,6 @@ const openPopup = (film) => {
   const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
   const popup = new PopupBoardView(film, currentFilmComments).getElement();
   render(footerContainer, popup, RenderPosition.AFTEREND);
-  // render(popup, new PopupFilmCardView(film).getElement(), RenderPosition.BEFOREEND);
-  // render(popup, new PopupBottomCardView(film).getElement(), RenderPosition.BEFOREEND);
-  // currentFilmComments.forEach((el) => render(popup, new PopupFilmCommentsView(el).getElement(), RenderPosition.BEFOREEND));
   popup.querySelector(`.film-details__close-btn`).addEventListener(`click`, (evt) => {
     document.querySelector(`body`).classList.remove(`hide-overflow`);
     evt.preventDefault();
