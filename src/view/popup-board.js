@@ -1,8 +1,4 @@
-import {
-  createElement,
-  render,
-  RenderPosition
-} from '../util.js';
+import {createElement, render, RenderPosition} from '../util.js';
 import PopupFilmCardView from './popup-film-card.js';
 import PopupBottomCardView from './popup-bottom-card.js';
 import PopupFilmCommentsView from './popup-film-comments.js';
