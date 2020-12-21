@@ -3,6 +3,7 @@ import PopupFilmCardView from './popup-film-card.js';
 import PopupBottomCardView from './popup-bottom-card.js';
 import PopupFilmCommentsView from './popup-film-comments.js';
 import AbstractView from './abstract.js';
+
 const createPopupBoard = () => {
   return `<section class="film-details">
   <form class="film-details__inner" action="" method="get">
