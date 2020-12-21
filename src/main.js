@@ -64,15 +64,14 @@ if (filmProfile.length > FILM_CARDS_PER_STEP) {
   let renderFilmCount = FILM_CARDS_PER_STEP;
   render(filmsListContainer, new ShowMoreBtnView(), RenderPosition.AFTEREND);
   const loadMoreBtn = document.querySelector(`.films-list__show-more`);
-  const getMoreFilmCards = (evt) => {
+  loadMoreBtn.addEventListener(`click`, (evt) => {
     evt.preventDefault();
     filmProfile.slice(renderFilmCount, renderFilmCount + FILM_CARDS_PER_STEP).forEach((el) => render(filmsListContainer, new FilmCardView(el).getElement(), RenderPosition.BEFOREEND));
     renderFilmCount += FILM_CARDS_PER_STEP;
     if (renderFilmCount >= filmProfile.length) {
       loadMoreBtn.remove();
     }
-  };
-  loadMoreBtn.addEventListener(`click`, getMoreFilmCards);
+  });
 }
 
 render(filmMainSection, new ExtraFilmBoardView(), RenderPosition.BEFOREEND);
