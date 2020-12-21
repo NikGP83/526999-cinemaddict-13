@@ -11,7 +11,7 @@ import PopupBoardView from './view/popup-board.js';
 import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
 import {getfiltersDataNum} from './mock/filter.js';
-import {RenderPosition, render} from './render.js';
+import {RenderPosition, render, remove} from './render.js';
 
 const filmProfile = getFilmData();
 const filters = getfiltersDataNum();
@@ -62,14 +62,14 @@ for (let i = 0; i < limit; i++) {
 
 if (filmProfile.length > FILM_CARDS_PER_STEP) {
   let renderFilmCount = FILM_CARDS_PER_STEP;
-  render(filmsListContainer, new ShowMoreBtnView(), RenderPosition.AFTEREND);
-  const loadMoreBtn = document.querySelector(`.films-list__show-more`);
-  loadMoreBtn.addEventListener(`click`, (evt) => {
+  const ShowMoreBtnComponent = new ShowMoreBtnView();
+  render(filmsListContainer, ShowMoreBtnComponent, RenderPosition.AFTEREND);
+  ShowMoreBtnComponent.getElement().addEventListener(`click`, (evt) => {
     evt.preventDefault();
     filmProfile.slice(renderFilmCount, renderFilmCount + FILM_CARDS_PER_STEP).forEach((el) => render(filmsListContainer, new FilmCardView(el).getElement(), RenderPosition.BEFOREEND));
     renderFilmCount += FILM_CARDS_PER_STEP;
     if (renderFilmCount >= filmProfile.length) {
-      loadMoreBtn.remove();
+      remove(ShowMoreBtnComponent);
     }
   });
 }
