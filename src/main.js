@@ -64,8 +64,7 @@ if (filmProfile.length > FILM_CARDS_PER_STEP) {
   let renderFilmCount = FILM_CARDS_PER_STEP;
   const ShowMoreBtnComponent = new ShowMoreBtnView();
   render(filmsListContainer, ShowMoreBtnComponent, RenderPosition.AFTEREND);
-  ShowMoreBtnComponent.getElement().addEventListener(`click`, (evt) => {
-    evt.preventDefault();
+  ShowMoreBtnComponent.setClickhandler(() => {
     filmProfile.slice(renderFilmCount, renderFilmCount + FILM_CARDS_PER_STEP).forEach((el) => render(filmsListContainer, new FilmCardView(el).getElement(), RenderPosition.BEFOREEND));
     renderFilmCount += FILM_CARDS_PER_STEP;
     if (renderFilmCount >= filmProfile.length) {
