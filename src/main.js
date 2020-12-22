@@ -47,15 +47,15 @@ const openPopup = (film) => {
 
 const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
 for (let i = 0; i < limit; i++) {
-  const view = new FilmCardView(filmProfile[i]).getElement();
+  const view = new FilmCardView(filmProfile[i]);
   render(filmsListContainer, view, RenderPosition.BEFOREEND);
-  view.querySelector(`.film-card__poster`).addEventListener(`click`, () => {
+  view.getElement().querySelector(`.film-card__poster`).addEventListener(`click`, () => {
     openPopup(filmProfile[i]);
   });
-  view.querySelector(`.film-card__title`).addEventListener(`click`, () => {
+  view.getElement().querySelector(`.film-card__title`).addEventListener(`click`, () => {
     openPopup(filmProfile[i]);
   });
-  view.querySelector(`.film-card__comments`).addEventListener(`click`, () => {
+  view.getElement().querySelector(`.film-card__comments`).addEventListener(`click`, () => {
     openPopup(filmProfile[i]);
   });
 }
@@ -65,7 +65,7 @@ if (filmProfile.length > FILM_CARDS_PER_STEP) {
   const ShowMoreBtnComponent = new ShowMoreBtnView();
   render(filmsListContainer, ShowMoreBtnComponent, RenderPosition.AFTEREND);
   ShowMoreBtnComponent.setClickhandler(() => {
-    filmProfile.slice(renderFilmCount, renderFilmCount + FILM_CARDS_PER_STEP).forEach((el) => render(filmsListContainer, new FilmCardView(el).getElement(), RenderPosition.BEFOREEND));
+    filmProfile.slice(renderFilmCount, renderFilmCount + FILM_CARDS_PER_STEP).forEach((el) => render(filmsListContainer, new FilmCardView(el), RenderPosition.BEFOREEND));
     renderFilmCount += FILM_CARDS_PER_STEP;
     if (renderFilmCount >= filmProfile.length) {
       remove(ShowMoreBtnComponent);
@@ -81,8 +81,8 @@ const extraFilmList = siteMainElement.querySelector(`.films-list--extra .films-l
 const extraFilmListCommented = siteMainElement.querySelector(`.films-list--extra:last-child .films-list__container`);
 
 for (let i = 0; i < MAX_SPECIAL_FILM_CARDS; i++) {
-  render(extraFilmList, new FilmCardView(filmProfile[i]).getElement(), RenderPosition.BEFOREEND);
-  render(extraFilmListCommented, new FilmCardView(filmProfile[i]).getElement(), RenderPosition.BEFOREEND);
+  render(extraFilmList, new FilmCardView(filmProfile[i]), RenderPosition.BEFOREEND);
+  render(extraFilmListCommented, new FilmCardView(filmProfile[i]), RenderPosition.BEFOREEND);
 }
 
 const footerContainer = document.querySelector(`.footer`);

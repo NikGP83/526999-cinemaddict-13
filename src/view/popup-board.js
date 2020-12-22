@@ -45,8 +45,8 @@ export default class PopupBoard extends AbstractView {
     this._callback.click();
   }
 
-  setClickhandler(callback) {
+  setClickhandlerP(callback) {
     this._callback.click = callback;
-    this.getElement().addEventListener(`click`, this._clickHandler);
+    this.querySelector(`.film-details__close-btn`).addEventListener(`click`, this._clickHandler);
   }
 }
