@@ -47,17 +47,13 @@ const openPopup = (film) => {
 
 const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
 for (let i = 0; i < limit; i++) {
-  const view = new FilmCardView(filmProfile[i]);
+  const currentFilmProfile = filmProfile[i];
+  const callback = () => {
+    openPopup(currentFilmProfile);
+  };
+  const view = new FilmCardView(currentFilmProfile); // и 's
   render(filmsListContainer, view, RenderPosition.BEFOREEND);
-  view.getElement().querySelector(`.film-card__poster`).addEventListener(`click`, () => {
-    openPopup(filmProfile[i]);
-  });
-  view.getElement().querySelector(`.film-card__title`).addEventListener(`click`, () => {
-    openPopup(filmProfile[i]);
-  });
-  view.getElement().querySelector(`.film-card__comments`).addEventListener(`click`, () => {
-    openPopup(filmProfile[i]);
-  });
+  view.setClickhandler(callback);
 }
 
 if (filmProfile.length > FILM_CARDS_PER_STEP) {
