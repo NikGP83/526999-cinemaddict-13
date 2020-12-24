@@ -1,4 +1,4 @@
-import {createElement, render, RenderPosition} from '../render.js';// спросить
+import {createElement, render, RenderPosition} from '../render.js';
 import PopupFilmCardView from './popup-film-card.js';
 import PopupBottomCardView from './popup-bottom-card.js';
 import PopupFilmCommentsView from './popup-film-comments.js';
@@ -12,11 +12,12 @@ const createPopupBoard = () => {
 };
 
 export default class PopupBoard extends AbstractView {
-  constructor(filmprofile, filmComments) {
+  constructor(filmprofile, filmComments, callback) {
     super();
     this._filmprofile = filmprofile;
     this._filmcomments = filmComments;
     this._clickHandlerOnImage = this._clickHandlerOnImage.bind(this);
+    this._callback.click = callback;
   }
 
   getTemplate() {
@@ -35,21 +36,20 @@ export default class PopupBoard extends AbstractView {
   getElement() {
     if (!this._element) {
       this._element = this._createElements();
+      this._setClickhandler();
     }
     return this._element;
   }
 
   _clickHandlerOnImage(evt) {
     evt.preventDefault();
-
-    this._callback.click();
+    document.querySelector(`body`).classList.remove(`hide-overflow`);
+    evt.preventDefault();
+    this._element.parentElement.removeChild(this._element);
   }
 
-  setClickhandler(callback) {
-    this._callback.click = callback;
-    const el = this.getElement();
+  _setClickhandler() {
+    const el = this._element;
     el.querySelector(`.film-details__close-btn`).addEventListener(`click`, this._clickHandlerOnImage);
-    el.querySelector(`.film-card__title`).addEventListener(`click`, this._clickHandlerOnImage);
-    el.querySelector(`.film-card__comments`).addEventListener(`click`, this._clickHandlerOnImage);
   }
 }

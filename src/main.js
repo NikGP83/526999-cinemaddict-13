@@ -35,14 +35,8 @@ const FILM_CARDS_PER_STEP = 5;
 const openPopup = (film) => {
   document.querySelector(`body`).classList.add(`hide-overflow`);
   const currentFilmComments = getCommentsData().filter((el) => el.filmId === film.id);
-  const popup = new PopupBoardView(film, currentFilmComments).getElement();
+  const popup = new PopupBoardView(film, currentFilmComments);
   render(footerContainer, popup, RenderPosition.AFTEREND);
-
-  popup.querySelector(`.film-details__close-btn`).addEventListener(`click`, (evt) => {
-    document.querySelector(`body`).classList.remove(`hide-overflow`);
-    evt.preventDefault();
-    popup.parentElement.removeChild(popup);
-  });
 };
 
 const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
@@ -51,9 +45,8 @@ for (let i = 0; i < limit; i++) {
   const callback = () => {
     openPopup(currentFilmProfile);
   };
-  const view = new FilmCardView(currentFilmProfile); // и 's
+  const view = new FilmCardView(currentFilmProfile, callback); // и 's
   render(filmsListContainer, view, RenderPosition.BEFOREEND);
-  view.setClickhandler(callback);
 }
 
 if (filmProfile.length > FILM_CARDS_PER_STEP) {
