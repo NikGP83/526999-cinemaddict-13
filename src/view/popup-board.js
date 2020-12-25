@@ -12,12 +12,12 @@ const createPopupBoard = () => {
 };
 
 export default class PopupBoard extends AbstractView {
-  constructor(filmprofile, filmComments, callback) {
+  constructor(filmprofile, filmComments, closeCallback) {
     super();
     this._filmprofile = filmprofile;
     this._filmcomments = filmComments;
     this._clickHandlerOnImage = this._clickHandlerOnImage.bind(this);
-    this._callback.click = callback;
+    this._callback.close = closeCallback;
   }
 
   getTemplate() {
@@ -43,9 +43,7 @@ export default class PopupBoard extends AbstractView {
 
   _clickHandlerOnImage(evt) {
     evt.preventDefault();
-    document.querySelector(`body`).classList.remove(`hide-overflow`);
-    evt.preventDefault();
-    this._element.parentElement.removeChild(this._element);
+    this._callback.close(this._element);
   }
 
   _setClickhandler() {
