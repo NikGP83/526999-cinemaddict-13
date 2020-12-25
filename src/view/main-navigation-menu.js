@@ -1,4 +1,4 @@
-import {createElement} from '../util.js';
+import AbstractView from './abstract.js';
 
 const createMainNavigationMenu = (filters) => {
   const {favoritesCount, watchListCount, historyCount} = filters;
@@ -13,22 +13,12 @@ const createMainNavigationMenu = (filters) => {
 </nav>`;
 };
 
-export default class MainNavigationMenu {
+export default class MainNavigationMenu extends AbstractView {
   constructor(filters) {
+    super();
     this._filters = filters;
-    this._element = null;
   }
   getTemplate() {
     return createMainNavigationMenu(this._filters);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }

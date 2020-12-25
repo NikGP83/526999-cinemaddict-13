@@ -1,4 +1,4 @@
-import {createElement} from '../util.js';
+import AbstractView from './abstract.js';
 
 const createItemBoard = () => {
   return `<section class="films">
@@ -9,24 +9,9 @@ const createItemBoard = () => {
   </section>`;
 };
 
-export default class ItemBoard {
-  constructor() {
-    this._element = null;
-  }
-
+export default class ItemBoard extends AbstractView {
   getTemplate() {
     return createItemBoard();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 
