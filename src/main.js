@@ -50,7 +50,7 @@ for (let i = 0; i < limit; i++) {
   const callback = () => {
     openPopup(currentFilmProfile);
   };
-  const view = new FilmCardView(currentFilmProfile, callback); // и 's
+  const view = new FilmCardView(currentFilmProfile, callback);
   render(filmsListContainer, view, RenderPosition.BEFOREEND);
 }
 
