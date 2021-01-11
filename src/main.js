@@ -12,14 +12,13 @@ import {getFilmData} from './mock/data-template.js';
 import {getCommentsData} from './mock/data-template.js';
 import {getfiltersDataNum} from './mock/filter.js';
 import {RenderPosition, render, remove} from './render.js';
+import UserRankPresenter from './presenter/user-rank.js';
 
 const filmProfile = getFilmData();
 const filters = getfiltersDataNum(filmProfile);
 
-const siteHeader = document.querySelector(`.header`);
+new UserRankPresenter(document.querySelector(`.header`)).init();
 
-
-render(siteHeader, new UserRankView(), RenderPosition.BEFOREEND);
 
 const siteMainElement = document.querySelector(`.main`);
 
