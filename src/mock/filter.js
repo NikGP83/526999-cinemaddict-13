@@ -1,15 +1,7 @@
-import {getFilmData} from './data-template.js';
-
-const filmProfileData = getFilmData();
-
-const favorites = filmProfileData.filter((el) => el.isFavorite);
-const watchList = filmProfileData.filter((el) => el.onWatchlist);
-const history = filmProfileData.filter((el) => el.inHistory);
-
-export const getfiltersDataNum = () => {
+export const getfiltersDataNum = (filmProfileData) => {
   return {
-    favoritesCount: favorites.length,
-    watchListCount: watchList.length,
-    historyCount: history.length
+    favoritesCount: filmProfileData.filter((el) => el.isFavorite).length,
+    watchListCount: filmProfileData.filter((el) => el.onWatchlist).length,
+    historyCount: filmProfileData.filter((el) => el.inHistory).length
   };
 };

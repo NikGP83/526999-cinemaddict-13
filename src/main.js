@@ -14,7 +14,7 @@ import {getfiltersDataNum} from './mock/filter.js';
 import {RenderPosition, render, remove} from './render.js';
 
 const filmProfile = getFilmData();
-const filters = getfiltersDataNum();
+const filters = getfiltersDataNum(filmProfile);
 
 const siteHeader = document.querySelector(`.header`);
 

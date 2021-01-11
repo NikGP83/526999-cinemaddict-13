@@ -7,8 +7,8 @@ const MAX_FULL_FILM_CARDS = 5;
 const FILM_CARDS_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(movieConainer) {
-    this._movieContainer = movieConainer;
+  constructor(movieContainer) {
+    this._movieContainer = movieContainer;
 
     this._ItemBoardView = new ItemBoardView();
     this._filmCardView = new FilmCardView();
