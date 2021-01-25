@@ -1,7 +1,7 @@
 import AbstractView from './abstract.js';
 
-const createPopupBottomCard = (filmProfile) => {
-  const {commentsNum} = filmProfile;
+const createPopupBottomCard = (filmProfiles) => {
+  const {commentsNum} = filmProfiles;
   return `<div class="film-details__bottom-container">
   <section class="film-details__comments-wrap">
     <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${commentsNum}</span></h3>
@@ -45,12 +45,12 @@ const createPopupBottomCard = (filmProfile) => {
 
 
 export default class PopupBottomCard extends AbstractView {
-  constructor(filmProfile) {
+  constructor(filmProfiles) {
     super();
-    this._filmProfile = filmProfile;
+    this._filmProfiles = filmProfiles;
   }
 
   getTemplate() {
-    return createPopupBottomCard(this._filmProfile);
+    return createPopupBottomCard(this._filmProfiles);
   }
 }

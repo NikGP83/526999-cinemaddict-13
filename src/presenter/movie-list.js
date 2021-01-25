@@ -1,42 +1,50 @@
-import FilmCardView from './view/film-card.js';
-import {render, RenderPosition} from '../render.js';
-import ItemBoardView from './view/item-board.js';
-import ShowMoreBtnView from './view/show-more-btn.js';
+import FilmCardView from '../view/film-card.js';
+import {render, RenderPosition, remove} from '../render.js';
+import ShowMoreBtnView from '../view/show-more-btn.js';
 
 const MAX_FULL_FILM_CARDS = 5;
 const FILM_CARDS_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(siteMainElement) {
+  constructor(siteMainElement, filmsListContainer) {
     this._siteMainElement = siteMainElement;
+    this._filmsListContainer = filmsListContainer;
 
-    this._ItemBoardView = new ItemBoardView();
-    this._filmCardView = new FilmCardView();
+    this._filmCardView = null;
     this._ShowMoreBtnView = new ShowMoreBtnView();
   }
 
-  init(movieTask) {
-    this._movieTask = movieTask.slice();
+  init(filmProfiles) {
+    this._filmProfiles = filmProfiles;
 
-    render(this._siteMainElement, this._ItemBoardView, RenderPosition.BEFOREEND);
-    render(this._ItemBoardView, this._filmCardView, RenderPosition.BEFOREEND);
-
-    this._renderFilmBoard();
+    this._renderFilmCard(filmProfiles);
+    this._renderShowMoreBtnView(filmProfiles);
   }
 
-  _renderFilmCard(filmProfile) {
-    const limit = Math.min(MAX_FULL_FILM_CARDS, filmProfile.length);
+  _renderFilmCard(filmCard) {
+    const limit = Math.min(MAX_FULL_FILM_CARDS, filmCard.length);
     for (let i = 0; i < limit; i++) {
-      const currentFilmProfile = filmProfile[i];
+      const currentFilmProfile = filmCard[i];
       // const callback = () => {
       //   openPopup(currentFilmProfile);
       // };
-      const view = new FilmCardView(currentFilmProfile, callback);
-      render(filmsListContainer, view, RenderPosition.BEFOREEND);
+      const view = new FilmCardView(currentFilmProfile);
+      render(this._filmsListContainer, view, RenderPosition.BEFOREEND);
     }
-
   }
-  _renderShowMoreButton() {
 
+  _renderShowMoreBtnView(filmProfiles) {
+    if (filmProfiles.length > FILM_CARDS_PER_STEP) {
+      let renderFilmCount = FILM_CARDS_PER_STEP;
+      const showMoreBtnComponent = new ShowMoreBtnView();
+      render(this._filmsListContainer, showMoreBtnComponent, RenderPosition.AFTEREND);
+      showMoreBtnComponent.setClickhandler(() => {
+        filmProfiles.slice(renderFilmCount, renderFilmCount + FILM_CARDS_PER_STEP).forEach((el) => render(this._filmsListContainer, new FilmCardView(el), RenderPosition.BEFOREEND));
+        renderFilmCount += FILM_CARDS_PER_STEP;
+        if (renderFilmCount >= filmProfiles.length) {
+          remove(showMoreBtnComponent);
+        }
+      });
+    }
   }
 }

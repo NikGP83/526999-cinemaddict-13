@@ -12,9 +12,9 @@ const createPopupBoard = () => {
 };
 
 export default class PopupBoard extends AbstractView {
-  constructor(filmprofile, filmComments, closeCallback) {
+  constructor(filmprofiles, filmComments, closeCallback) {
     super();
-    this._filmprofile = filmprofile;
+    this._filmprofile = filmprofiles;
     this._filmcomments = filmComments;
     this._clickHandlerOnImage = this._clickHandlerOnImage.bind(this);
     this._callback.close = closeCallback;
@@ -26,8 +26,8 @@ export default class PopupBoard extends AbstractView {
 
   _createElements() {
     const temp = createElement(this.getTemplate());
-    render(temp, new PopupFilmCardView(this._filmprofile), RenderPosition.BEFOREEND);
-    render(temp, new PopupBottomCardView(this._filmprofile), RenderPosition.BEFOREEND);
+    render(temp, new PopupFilmCardView(this._filmprofiles), RenderPosition.BEFOREEND);
+    render(temp, new PopupBottomCardView(this._filmprofiles), RenderPosition.BEFOREEND);
     const commentContainer = temp.querySelector(`.film-details__comments-list`);
     this._filmcomments.forEach((el) => render(commentContainer, new PopupFilmCommentsView(el), RenderPosition.BEFOREEND));
     return temp;

@@ -1,8 +1,8 @@
 import {createElement} from '../render.js';
 import AbstractView from './abstract.js';
 
-const createFilmCard = (filmProfile) => {
-  const {filmName, poster, productDate, duration, genre, descriprion, rating, commentsNum} = filmProfile;
+const createFilmCard = (filmProfiles) => {
+  const {filmName, poster, productDate, duration, genre, descriprion, rating, commentsNum} = filmProfiles;
 
   return `<article class="film-card">
   <h3 class="film-card__title">${filmName}</h3>
@@ -24,9 +24,9 @@ const createFilmCard = (filmProfile) => {
 };
 
 export default class FilmCard extends AbstractView {
-  constructor(filmProfile, callback) {
+  constructor(filmProfiles, callback) {
     super();
-    this._filmprofile = filmProfile;
+    this._filmprofiles = filmProfiles;
     this._clickHandler = this._clickHandler.bind(this);
     this._callback.click = callback;
   }
@@ -45,7 +45,7 @@ export default class FilmCard extends AbstractView {
   }
 
   getTemplate() {
-    return createFilmCard(this._filmprofile);
+    return createFilmCard(this._filmprofiles);
   }
 
   _clickHandler(evt) {
